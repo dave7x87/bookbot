@@ -1,5 +1,6 @@
 ## main.py
 #Imports
+import sys
 from stats import get_num_words, get_sorted_chars
 
 #Set report constants
@@ -24,13 +25,18 @@ def print_report(book_path: str, word_count: int, char_counts: list[dict[str, in
     print(FOOTER)
 
 def main() -> None:
+    #Check for book_path
+    if len(sys.argv) == 1:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
 
-    book_path = "books/frankenstein.txt"    # Set book to read in
+    book_path = sys.argv[1]                 # Set book to read in
     text = get_book_text(book_path)         # Read book
     # Get report values
     num_words = get_num_words(text)         # word counts
     char_counts = get_sorted_chars(text)    # character counts
     print_report(book_path, num_words, char_counts)
-
+    
 if __name__ == "__main__":                  #import guard
     main()
