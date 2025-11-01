@@ -1,5 +1,6 @@
 def get_num_words(text):
-    """ Return the number of whitespace-separated words in text."""    
+    """ Return the number of whitespace-separated words in text."""
+    
     return len(text.split())
 
 def count_chars(text):
@@ -16,18 +17,30 @@ def count_chars(text):
 
 def get_char_list(text):
     """ Takes the given text, passes to count_chars for counting
-        Then converts to a list
+        Then converts to a list of dictionaries
     """
+    
     char_counts = count_chars(text)
     char_list = []
     for char in char_counts:
-        char_list.append ({"char": char, "num": char_counts[char]})
+        count = char_counts[char]
+        char_list.append ({"char": char, "num": count})
     
     return char_list
 
-def sort_on(dict):
-    """ Return the list of keys to sort by"""
-
-def sort_char_list(list):
-    """  Takes the list of """
+def sort_on(list):
+    """ A function that takes a dictionary and returns the value of the "num" key
+        This is how the `.sort()` method knows how to sort the list of dictionaries
+    """
     
+    return list["num"]
+
+def get_sorted_chars(text):
+    """ Gets the character list and gets it sorted
+        Returned as list of dictionaries
+    """
+
+    char_list = get_char_list(text)                 # get list
+    char_list.sort(reverse=True, key=sort_on)   # sort list
+
+    return char_list
