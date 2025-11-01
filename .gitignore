@@ -1,1 +1,8 @@
-/books
+#python standard ignores:
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+#My ignores
+books/
