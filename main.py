@@ -7,25 +7,28 @@ from stats import get_num_words, get_sorted_chars #get_char_count
 
 def main():
     
-    book_path = "books/frankenstein.txt"
+    book_path = "books/frankenstein.txt"    # Set book to read in
     
-    text = get_book_text(book_path)
+    text = get_book_text(book_path)         # Read book
     
-    num_words = get_num_words(text)
+    # Get report values
+    num_words = get_num_words(text)         # word counts
+    char_counts = get_sorted_chars(text)    # character counts
+
+    # Begin report generation
+    # Header first
+    print ("============ BOOKBOT ============")
+    print (f"Analyzing book found at {book_path}")
+    # Add word count
+    print ("----------- Word Count ----------")
     print(f"Found {num_words} total words")
-    
-    """ Disable code pending refactoring for expanded/new functionality
-    
-    char_counts = get_char_count(text)
-    print("Character counts:")
-    for char in sorted(char_counts.keys()):
-        print(f"{char!r}: {char_counts[char]}")
-    
-    """
-
-    ##TEST CODE ONLY
-    char_counts = get_sorted_chars(text)
-    print(char_counts)
-
+    # Add character count
+    print ("--------- Character Count -------")
+    # filter out non alphabet characters
+    for char in char_counts:
+        if char["char"].isalpha():
+            print(f"{char["char"]}: {char["num"]}")
+    # and then just add the footer
+    print ("============= END ===============")
 
 main()
